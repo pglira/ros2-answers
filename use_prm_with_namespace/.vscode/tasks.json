@@ -1,0 +1,21 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "colcon build",
+			"type": "shell",
+			"options": {
+				"cwd": "${workspaceFolder}/../.."
+			},
+			"command": "colcon build"
+		},
+		{
+			"label": "use_prm_with_namespace_launch.py",
+			"type": "shell",
+			"options": {
+				"cwd": "${workspaceFolder}/../.."
+			},
+			"command": "colcon build && . install/setup.bash && ros2 launch use_prm_with_namespace use_prm_with_namespace_launch.py"
+		},
+	]
+}

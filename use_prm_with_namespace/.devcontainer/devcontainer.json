@@ -1,0 +1,46 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.209.6/containers/ubuntu
+{
+	"name": "ros:galactic",
+	"build": {
+		"dockerfile": "Dockerfile",
+	},
+
+	"settings": {},
+
+	"extensions": [
+		"ms-python.python",
+		"visualstudioexptteam.vscodeintellicod",
+		"njpwerner.autodocstring",
+		"gruntfuggly.todo-tree",
+		"streetsidesoftware.code-spell-checker",
+		"yzhang.markdown-all-in-one",
+		"redhat.vscode-xml"
+	],
+
+	"runArgs": [
+		"--cap-add=SYS_PTRACE",
+		"--security-opt", "seccomp=unconfined",
+		"--privileged",
+		"-e", "DISPLAY=${env:DISPLAY}",
+		"-e", "QT_X11_NO_MITSHM=1",
+		"-e", "XDG_RUNTIME_DIR=${env:XDG_RUNTIME_DIR}",
+		// "--net", "host",
+		"-v", "/home/philipp/.Xauthority:/root/.Xauthority:rw",
+		"-v", "/tmp/.X11-unix:/tmp/.X11-unix",
+		"--device=/dev:/dev",
+	],
+
+	"onCreateCommand": "mkdir -p /ros_ws",
+
+	"remoteUser": "vscode",
+
+	"workspaceMount": "source=${localWorkspaceFolder},target=/ros_ws/src/use_prm_with_namespace,type=bind,consistency=cached",
+
+	"workspaceFolder": "/ros_ws/src/use_prm_with_namespace",
+
+	"postCreateCommand": ".devcontainer/postCreateCommand.sh",
+
+	"mounts": ["source=${localEnv:PRJDIR},target=${localEnv:PRJDIR},type=bind,consistency=cached"],
+
+}
